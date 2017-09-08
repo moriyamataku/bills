@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  serial_number: MyString
+  recipient: MyString
+  title: MyString
+  total_amount: 1
+  billing_date: 2017-09-08
+
+two:
+  serial_number: MyString
+  recipient: MyString
+  title: MyString
+  total_amount: 1
+  billing_date: 2017-09-08

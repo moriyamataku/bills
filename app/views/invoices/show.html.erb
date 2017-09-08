@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Serial number:</strong>
+  <%= @invoice.serial_number %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @invoice.recipient %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @invoice.title %>
+</p>
+
+<p>
+  <strong>Total amount:</strong>
+  <%= @invoice.total_amount %>
+</p>
+
+<p>
+  <strong>Billing date:</strong>
+  <%= @invoice.billing_date %>
+</p>
+
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
+<%= link_to 'Back', invoices_path %>
