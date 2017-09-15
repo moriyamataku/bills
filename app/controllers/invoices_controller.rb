@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  layout "paper_a4", only: [:show, :edit]
 
   # GET /invoices
   # GET /invoices.json
