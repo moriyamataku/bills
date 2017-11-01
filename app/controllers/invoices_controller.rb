@@ -1,11 +1,11 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-  layout "paper_a4", only: [:show, :edit]
+  layout "paper_a4", only: [:show]
 
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.all.order("billing_date DESC")
   end
 
   # GET /invoices/1
@@ -70,6 +70,10 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:serial_number, :recipient, :title, :total_amount, :billing_date)
+      params.require(:invoice)
+        .permit(:serial_number, :recipient, :title, :total_amount, :billing_date,
+                :sender_id, :bank_id,
+                products_attributes: 
+                  [:name, :number, :unit, :unit_price, :amount])
     end
 end

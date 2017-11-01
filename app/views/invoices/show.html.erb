@@ -1,11 +1,10 @@
 <section class="sheet padding-10mm invoice_form">
   <div class="alnright">
     <p>
-      2017年09月04日
+      <%= l(@invoice.billing_date, format: :long) %>
     </p>
     <p>
-      請求番号:
-      20170904-001
+      <%= "請求番号: #{@invoice.serial_number}" %>
     </p>
   </div>
 
@@ -15,7 +14,7 @@
     <div class="alpha">
       <div class="recipientNameBox">
         <p class="recipientName">
-           ライフイズテック株式会社&nbsp;様
+           <%= "#{@invoice.recipient} 様" %>
         </p>
         <p class="recipient_notes"></p>
       </div>
@@ -25,243 +24,92 @@
       </p>
       <dl class="totalAmountPrice clearfix">
         <dt>ご請求金額</dt>
-        <dd>¥
-          469,800 -
-      </dd></dl>
+        <dd>
+          <%= "#{number_to_currency(@invoice.total_amount)} -" %>
+        </dd>
+      </dl>
     </div>
 
+    <% sender = @invoice.sender %>
     <div class="beta_gamma clearfix">
       <div class="gamma">
         <!-- 印影 -->
       </div>
       <div class="beta">
         <p class="senderName">
-          森山　拓
+          <%= sender.name %>
         </p>
         <p>
-          〒145-0073<br>
-          東京都大田区北嶺町<br>
-          31-7<br>
-          ジュネス北嶺203号室<br>
-          <br>TEL:080-6730-7302<br>
-          moriyamataku2@gmail.com
+          〒<%= sender.postal_code %><br>
+          <%= sender.address1 %><br>
+          <%= sender.address2 %><br>
+          <%= sender.address3 %><br>
+          <br>TEL:<%= sender.telephone %><br>
+          <%= sender.email %>
         </p>
       </div>
     </div>
   </div>
 
   <table width="100%" class="table_main">
-    <tbody><tr>
-      <th>品番・品名</th>
-      <th width="13%">数量</th>
-      <th width="12%">単価</th>
-      <th width="15%">金額</th>
-    </tr>
+    <tbody>
+      <tr>
+        <th>品番・品名</th>
+        <th width="13%">数量</th>
+        <th width="12%">単価</th>
+        <th width="15%">金額</th>
+      </tr>
+    <% for i in 0..9 %>
+      <% product = @invoice.products[i].present? ? @invoice.products[i] : nil %>
       <tr>
         <td>
-          サーバーサイドエンジニア業務（2017年8月分）
+          <%= product.try(:name) %>
         </td>
         <td class="alnright">
-          14.5
-          <span class="unit-name">日</span>
+          <%= product.try(:number) %>
+          <span class="unit-name"><%= product.try(:unit) %></span>
         </td>
         <td class="alnright">
-          30,000
+          <%= product ? number_to_currency(product.try(:unit_price), :unit => "") : "" %>
         </td>
         <td class="alnright">
           &nbsp;
-          435,000
+          <%= product ? number_to_currency(product.try(:amount), :unit => "") : "" %>
         </td>
       </tr>
-      <tr>
-        <td>
-
-        </td>
-        <td class="alnright">
-
-          <span class="unit-name"></span>
-        </td>
-        <td class="alnright">
-
-
-
-        </td>
-        <td class="alnright">
-          &nbsp;
-
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-        <td class="alnright">
-
-          <span class="unit-name"></span>
-        </td>
-        <td class="alnright">
-
-
-
-        </td>
-        <td class="alnright">
-          &nbsp;
-
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-        <td class="alnright">
-
-          <span class="unit-name"></span>
-        </td>
-        <td class="alnright">
-
-
-
-        </td>
-        <td class="alnright">
-          &nbsp;
-
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-        <td class="alnright">
-
-          <span class="unit-name"></span>
-        </td>
-        <td class="alnright">
-
-
-
-        </td>
-        <td class="alnright">
-          &nbsp;
-
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-        <td class="alnright">
-
-          <span class="unit-name"></span>
-        </td>
-        <td class="alnright">
-
-
-
-        </td>
-        <td class="alnright">
-          &nbsp;
-
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-        <td class="alnright">
-
-          <span class="unit-name"></span>
-        </td>
-        <td class="alnright">
-
-
-
-        </td>
-        <td class="alnright">
-          &nbsp;
-
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-        <td class="alnright">
-
-          <span class="unit-name"></span>
-        </td>
-        <td class="alnright">
-
-
-
-        </td>
-        <td class="alnright">
-          &nbsp;
-
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-        <td class="alnright">
-
-          <span class="unit-name"></span>
-        </td>
-        <td class="alnright">
-
-
-
-        </td>
-        <td class="alnright">
-          &nbsp;
-
-        </td>
-      </tr>
-      <tr>
-        <td>
-
-        </td>
-        <td class="alnright">
-
-          <span class="unit-name"></span>
-        </td>
-        <td class="alnright">
-
-
-
-        </td>
-        <td class="alnright">
-          &nbsp;
-
-        </td>
-      </tr>
+    <% end %>
 
       <tr>
         <td class="blank"></td>
         <td colspan="2">小計</td>
-        <td class="alnright">435,000</td>
+        <td class="alnright">
+          <%= number_to_currency(@invoice.try(:total_amount_without_tax), :unit => "") %>
+        </td>
       </tr>
         <tr>
           <td class="blank"></td>
           <td colspan="2">消費税(8%)</td>
-        <td class="alnright">34,800</td>
+        <td class="alnright">
+          <%= number_to_currency(@invoice.try(:total_amount_without_tax) * 0.08, :unit => "") %>
+        </td>
       </tr>
       <tr>
         <td class="blank"></td>
         <td colspan="2">合計</td>
-        <td class="alnright">469,800</td>
+        <td class="alnright">
+          <%= number_to_currency(@invoice.try(:total_amount), :unit => "") %>
+        </td>
       </tr>
     </tbody>
   </table>
 
   <p class="notes"></p>
+  <% bank = @invoice.bank %>
   <div style="margin:1em 0;page-break-inside: avoid;">
     <strong>お振込先：</strong><br>
       <div>
-        三菱東京UFJ銀行 五反田支店 (普) 0375311 モリヤマ タク
+        <%= "#{bank.bank_name} #{bank.branch_name} #{bank.account_type} #{bank.account_number} #{bank.account_holder}" %>
       </div>
   </div>
 
-  <%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-  <%= link_to 'Back', invoices_path %>
 </section>

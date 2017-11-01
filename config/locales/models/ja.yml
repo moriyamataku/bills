@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    models:
+      invoice: 請求書
+      product: 品目
+    attributes:
+      invoice:
+        serial_number: 請求書番号
+        recipient: 宛先
+        title: 名称
+        total_amount: 合計額
+        billing_date: 請求日
+        sender_id: 請求者
+        bank_id: 振込先銀行
+        products: 品目
+      product:
+        name: 品番・品名
+        number: 数量
+        unit: 単位
+        unit_price: 単価
+        amount: 金額

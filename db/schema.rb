@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170908073616) do
+ActiveRecord::Schema.define(version: 20171002070931) do
+
+  create_table "banks", force: :cascade do |t|
+    t.string "bank_name"
+    t.string "branch_name"
+    t.string "account_type"
+    t.string "account_number"
+    t.string "account_holder"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "invoices", force: :cascade do |t|
     t.string "serial_number"
@@ -20,14 +30,30 @@ ActiveRecord::Schema.define(version: 20170908073616) do
     t.date "billing_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sender_id"
+    t.integer "bank_id"
   end
 
   create_table "products", force: :cascade do |t|
+    t.integer "invoice_id"
     t.string "name"
-    t.integer "number"
+    t.decimal "number", precision: 9, scale: 3
     t.string "unit"
     t.integer "unit_price"
     t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_products_on_invoice_id"
+  end
+
+  create_table "senders", force: :cascade do |t|
+    t.string "name"
+    t.string "telephone"
+    t.string "email"
+    t.string "postal_code"
+    t.string "address1"
+    t.string "address2"
+    t.string "address3"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
