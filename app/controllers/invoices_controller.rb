@@ -15,7 +15,7 @@ class InvoicesController < ApplicationController
 
   # GET /invoices/new
   def new
-    @invoice = Invoice.new
+    @invoice = Invoice.dup_last_invoice
   end
 
   # GET /invoices/1/edit
@@ -73,7 +73,7 @@ class InvoicesController < ApplicationController
       params.require(:invoice)
         .permit(:serial_number, :recipient, :title, :total_amount, :billing_date,
                 :sender_id, :bank_id,
-                products_attributes: 
-                  [:name, :number, :unit, :unit_price, :amount])
+                products_attributes:
+                  [:id, :name, :number, :unit, :unit_price, :amount])
     end
 end

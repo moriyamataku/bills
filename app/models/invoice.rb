@@ -10,6 +10,12 @@ class Invoice < ApplicationRecord
     products.inject(0) { |sum, product| sum + product.amount }
   end
 
+  def self.dup_last_invoice
+    invoice = Invoice.last.dup
+    invoice.products << Product.last.dup
+    invoice
+  end
+
   private
 
   def reject_product(attributed)
