@@ -1,4 +1,15 @@
 <%= form_with(model: invoice, local: true) do |form| %>
+  <div class="title_bar" id="title_bar">
+    <div id="titlebar_left">
+      <h2 id="page_title"><%= invoice.persisted? ? "請求書の編集" : "請求書の新規作成" %></h2>
+    </div>
+    <div id="titlebar_right">
+      <%= form.submit :class => "title_button" %>
+      <%= link_to '一覧へ戻る', invoices_path, class: "title_button" %>
+    </div>
+  </div>
+
+
   <% if invoice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
@@ -13,93 +24,92 @@
 
   <div class="form-group row">
     <%= form.label :serial_number, class: "col-2 col-form-label" %>
-    <div class="col-10">
+    <div class="col-4">
       <%= form.text_field :serial_number, id: :invoice_serial_number, class: "form-control" %>
+    </div>
+    <%= form.label :billing_date, class: "col-2 col-form-label" %>
+    <div class="col-4">
+      <%= form.date_select :billing_date, id: :invoice_billing_date, :use_month_number => true, :class => "form-control date_select" %>
     </div>
   </div>
 
   <div class="form-group row">
     <%= form.label :recipient, class: "col-2 col-form-label" %>
-    <div class="col-10">
+    <div class="col-4">
       <%= form.text_field :recipient, id: :invoice_recipient, class: "form-control" %>
     </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :title, class: "col-2 col-form-label" %>
-    <div class="col-10">
-      <%= form.text_field :title, id: :invoice_title, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :total_amount, class: "col-2 col-form-label" %>
-    <div class="col-10">
-      <%= form.number_field :total_amount, id: :invoice_total_amount, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :products, class: "col-2 col-form-label" %>
-    <div class="col-10">
-      <%= form.fields_for :products, @invoice.products.empty? ? @invoice.products.build : @invoice.products.first do |product_form| %>
-      <div class="form-group row">
-        <%= product_form.label :name, class: "col-3 col-form-label" %>
-        <div class="col-9">
-          <%= product_form.text_field :name, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <%= product_form.label :number, class: "col-3 col-form-label" %>
-        <div class="col-9">
-          <%= product_form.number_field :number, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <%= product_form.label :unit, class: "col-3 col-form-label" %>
-        <div class="col-9">
-          <%= product_form.text_field :unit, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <%= product_form.label :unit_price, class: "col-3 col-form-label" %>
-        <div class="col-9">
-          <%= product_form.number_field :unit_price, class: "form-control" %>
-        </div>
-      </div>
-      <div class="form-group row">
-        <%= product_form.label :amount, class: "col-3 col-form-label" %>
-        <div class="col-9">
-          <%= product_form.number_field :amount, class: "form-control" %>
-        </div>
-      </div>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :billing_date, class: "col-2 col-form-label" %>
-    <div class="col-10">
-      <%= form.date_select :billing_date, id: :invoice_billing_date, class: "form-control" %>
-    </div>
-  </div>
-
-  <div class="form-group row">
     <%= form.label :sender_id, class: "col-2 col-form-label" %>
-    <div class="col-10">
+    <div class="col-4">
       <%= form.collection_select :sender_id, Sender.all, :id, :name, class: "form-control" %>
     </div>
   </div>
 
   <div class="form-group row">
+    <%= form.label :title, class: "col-2 col-form-label" %>
+    <div class="col-4">
+      <%= form.text_field :title, id: :invoice_title, class: "form-control" %>
+    </div>
     <%= form.label :bank_id, class: "col-2 col-form-label" %>
-    <div class="col-10">
+    <div class="col-4">
       <%= form.collection_select :bank_id, Bank.all, :id, :bank_name, class: "form-control" %>
     </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit :class => "btn btn-outline-primary" %>
-    <%= link_to '一覧へ戻る', invoices_path, class: "btn btn-outline-warning" %>
+  <div class="row product_row">
+    <%= form.label :products, class: "col-2 col-form-label" %>
+    <div class="col-10">
+      <div class="row">
+        <div class="col-7 product_column_left product_header">
+          品番・品名
+        </div>
+        <div class="col-5">
+          <div class="row">
+            <div class="col-2 product_column product_header">
+              数量
+            </div>
+            <div class="col-2 product_column product_header">
+              (単位)
+            </div>
+            <div class="col-4 product_column product_header">
+              単価
+            </div>
+            <div class="col-4 product_column_right product_header">
+              金額
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= form.fields_for :products, @invoice.products.empty? ? @invoice.products.build : @invoice.products do |product_form| %>
+        <div class="row">
+          <div class="col-7 product_column_left">
+            <%= product_form.text_field :name, class: "form-control" %>
+          </div>
+          <div class="col-5">
+            <div class="row">
+              <div class="col-2 product_column">
+                <%= product_form.number_field :number, class: "form-control" %>
+              </div>
+              <div class="col-2 product_column">
+                <%= product_form.text_field :unit, class: "form-control" %>
+              </div>
+              <div class="col-4 product_column">
+                <%= product_form.number_field :unit_price, class: "form-control" %>
+              </div>
+              <div class="col-4 product_column_right">
+                <%= product_form.number_field :amount, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-6"></div>
+    <%= form.label :total_amount, class: "col-2 offset-md-6 col-form-label" %>
+    <div class="col-4">
+      <%= form.number_field :total_amount, id: :invoice_total_amount, class: "form-control" %>
+    </div>
   </div>
 <% end %>

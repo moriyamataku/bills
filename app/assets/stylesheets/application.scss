@@ -14,3 +14,105 @@
  *= require_self
  */
  @import "bootstrap";
+
+ #title_bar {
+  background-color: #efefef;
+  background-image: linear-gradient(180deg, #efefef, #dfe1e2);
+  text-shadow: #fff 0 1px 0;
+  border: solid 1px #cdcdcd;
+  border-color: #d4d4d4;
+  border-top-color: #e6e6e6;
+  border-right-color: #d4d4d4;
+  border-left-color: #d4d4d4;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 0 1px #FFF inset;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 18px;
+  margin-bottom: 0.5em;
+  color: #5E6469;
+  box-sizing: border-box;
+  display: table;
+  border-bottom-color: #EEE;
+  height: 40px;
+  width: 100%;
+  position: relative;
+  margin: 0 0 20px 0;
+  padding: 10px 30px;
+  z-index: 800;
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.6em;
+    line-height: 100%;
+    font-weight: bold;
+  }
+}
+
+#titlebar_left {
+  vertical-align: middle;
+  display: table-cell;
+}
+
+#titlebar_right {
+    text-align: right;
+}
+
+.title_button {
+  border-radius: 200px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.0em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 12px;
+  margin-right: 3px;
+  text-decoration: none;
+  background-color: #FFFFFF;
+  background-image: linear-gradient(180deg, #fff, #E7E7E7);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1), 0 1px 0 0 rgba(255,255,255,0.8) inset;
+  border: solid 1px #c7c7c7;
+  border-color: #c7c7c7;
+  border-top-color: #d3d3d3;
+  border-right-color: #c7c7c7;
+  border-bottom-color: #c2c2c2;
+  border-left-color: #c7c7c7;
+  text-shadow: #fff 0 1px 0;
+  color: #5E6469;
+  padding: 12px 17px 10px;
+  margin: 0px;
+}
+
+table {
+  font-size: 0.85em;
+}
+
+
+.product_column_left {
+  padding-right: 0;
+}
+
+.product_column {
+  padding: 0;
+}
+
+.product_column_right {
+  padding-left: 0;
+}
+
+.product_row {
+  margin-bottom: 10px;
+}
+
+.product_header {
+  text-align: center;
+}
+
+.date_select {
+  display: inline-block;
+  width: auto;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

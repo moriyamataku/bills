@@ -1,8 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div class="title_bar" id="title_bar">
+  <div id="titlebar_left">
+    <h2 id="page_title">請求書一覧</h2>
+  </div>
+  <div id="titlebar_right">
+    <%= link_to '新しい請求書を作成する', new_invoice_path, class: "title_button"%>
+  </div>
+</div>
 
-<h1>請求書</h1>
-
-<table class="table table-hover table-striped">
+<table class="table table-bordered table-striped">
   <thead class="thead-inverse">
     <tr>
       <th>請求書番号</th>
@@ -22,14 +27,10 @@
         <td><%= invoice.title %></td>
         <td><%= invoice.total_amount %></td>
         <td><%= invoice.billing_date %></td>
-        <td><%= link_to '表示', invoice %></td>
+        <td><%= link_to '印刷用ページ表示', invoice %></td>
         <td><%= link_to '編集', edit_invoice_path(invoice) %></td>
         <td><%= link_to '削除', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to '新しい請求書を作成する', new_invoice_path, class: "btn btn-outline-primary" %>

@@ -11,6 +11,16 @@
 
   <body>
     <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Bills</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item <%= 'active' if current_page?(invoices_path) %>">
+              <%= link_to "請求書一覧", invoices_path, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <%= yield %>
     </div>
   </body>
