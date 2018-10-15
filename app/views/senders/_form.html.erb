@@ -1,0 +1,61 @@
+<%= form_with(model: sender, local: true) do |form| %>
+  <div class="title_bar" id="title_bar">
+    <div id="titlebar_left">
+      <h2 id="page_title"><%= sender.persisted? ? "請求者の編集" : "請求者の新規作成" %></h2>
+    </div>
+    <div id="titlebar_right">
+      <%= form.submit :class => "title_button" %>
+      <%= link_to '一覧へ戻る', senders_path, class: "title_button" %>
+    </div>
+  </div>
+
+  <% if sender.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sender.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% sender.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= form.label :name, class: "col-2 col-form-label" %>
+    <div class="col-4">
+      <%= form.text_field :name, id: :sender_name, class: "form-control" %>
+    </div>
+    <%= form.label :telephone, class: "col-2 col-form-label" %>
+    <div class="col-4">
+      <%= form.text_field :telephone, id: :sender_telephone, :class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :email, class: "col-2 col-form-label" %>
+    <div class="col-4">
+      <%= form.text_field :email, id: :sender_email, class: "form-control" %>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <%= form.label :postal_code, class: "col-4 col-form-label" %>
+        <div class="col-8">
+        <%= form.text_field :postal_code, id: :sender_postal_code, class: "form-control" %>
+        </div>
+        <%= form.label :address1, class: "col-4 col-form-label" %>
+        <div class="col-8">
+        <%= form.text_field :address1, id: :sender_address1, class: "form-control" %>
+        </div>
+        <%= form.label :address2, class: "col-4 col-form-label" %>
+        <div class="col-8">
+        <%= form.text_field :address2, id: :sender_address2, class: "form-control" %>
+        </div>
+        <%= form.label :address3, class: "col-4 col-form-label" %>
+        <div class="col-8">
+        <%= form.text_field :address3, id: :sender_address3, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

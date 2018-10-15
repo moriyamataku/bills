@@ -63,15 +63,16 @@ class InvoicesController < ApplicationController
   end
 
   private
-    def set_invoice
-      @invoice = Invoice.find(params[:id])
-    end
 
-    def invoice_params
-      params.require(:invoice)
-        .permit(:serial_number, :recipient, :title, :total_amount, :billing_date,
-                :sender_id, :bank_id,
-                products_attributes:
-                  [:id, :name, :number, :unit, :unit_price, :amount, :_destroy])
-    end
+  def set_invoice
+    @invoice = Invoice.find(params[:id])
+  end
+
+  def invoice_params
+    params.require(:invoice)
+      .permit(:serial_number, :recipient, :title, :total_amount, :billing_date,
+              :sender_id, :bank_id,
+              products_attributes:
+                [:id, :name, :number, :unit, :unit_price, :amount, :_destroy])
+  end
 end

@@ -3,6 +3,7 @@ ja:
     models:
       invoice: 請求書
       product: 品目
+      sender: 請求者
     attributes:
       invoice:
         serial_number: 請求書番号
@@ -19,3 +20,11 @@ ja:
         unit: 単位
         unit_price: 単価
         amount: 金額
+      sender:
+        name: 名前
+        telephone: 電話番号
+        email: Eメール
+        postal_code: 郵便番号
+        address1: 住所１
+        address2: 住所２
+        address3: 住所３
