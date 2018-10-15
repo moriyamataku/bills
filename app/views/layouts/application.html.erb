@@ -25,6 +25,11 @@
               <%= link_to "請求者一覧", senders_path, class: "nav-link" %>
             </li>
           </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item <%= 'active' if current_page?(banks_path) %>">
+              <%= link_to "振込先銀行一覧", banks_path, class: "nav-link" %>
+            </li>
+          </ul>
         </div>
       </nav>
       <%= yield %>

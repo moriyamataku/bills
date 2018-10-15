@@ -14,7 +14,7 @@
       <th>電話番号</th>
       <th>Eメール</th>
       <th>住所</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -25,7 +25,6 @@
         <td><%= sender.telephone %></td>
         <td><%= sender.email %></td>
         <td><%= sender.full_address %></td>
-        <td><%= link_to '表示', sender %></td>
         <td><%= link_to '編集', edit_sender_path(sender) %></td>
         <td><%= link_to '削除', sender, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

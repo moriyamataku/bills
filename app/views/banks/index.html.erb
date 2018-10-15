@@ -1,0 +1,35 @@
+<div class="title_bar" id="title_bar">
+  <div id="titlebar_left">
+    <h2 id="page_title">振込先銀行一覧</h2>
+  </div>
+  <div id="titlebar_right">
+    <%= link_to '新しい振込先銀行を作成する', new_bank_path, class: "title_button"%>
+  </div>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>銀行名</th>
+      <th>支店名</th>
+      <th>口座種別</th>
+      <th>口座番号</th>
+      <th>口座名義人</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @banks.each do |bank| %>
+      <tr>
+        <td><%= bank.bank_name %></td>
+        <td><%= bank.branch_name %></td>
+        <td><%= bank.account_type %></td>
+        <td><%= bank.account_number %></td>
+        <td><%= bank.account_holder %></td>
+        <td><%= link_to '編集', edit_bank_path(bank) %></td>
+        <td><%= link_to '削除', bank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
