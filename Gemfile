@@ -18,6 +18,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'pdfkit'
 gem 'wkhtmltopdf'
+gem 'jquery-rails'
+gem 'link_to_add_fields'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

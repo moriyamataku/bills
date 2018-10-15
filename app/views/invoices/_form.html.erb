@@ -9,7 +9,6 @@
     </div>
   </div>
 
-
   <% if invoice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
@@ -70,46 +69,37 @@
             <div class="col-2 product_column product_header">
               (単位)
             </div>
-            <div class="col-4 product_column product_header">
+            <div class="col-3 product_column product_header">
               単価
             </div>
-            <div class="col-4 product_column_right product_header">
+            <div class="col-3 product_column_right product_header">
               金額
             </div>
           </div>
         </div>
       </div>
       <%= form.fields_for :products, @invoice.products.empty? ? @invoice.products.build : @invoice.products do |product_form| %>
-        <div class="row">
-          <div class="col-7 product_column_left">
-            <%= product_form.text_field :name, class: "form-control" %>
-          </div>
-          <div class="col-5">
-            <div class="row">
-              <div class="col-2 product_column">
-                <%= product_form.number_field :number, class: "form-control" %>
-              </div>
-              <div class="col-2 product_column">
-                <%= product_form.text_field :unit, class: "form-control" %>
-              </div>
-              <div class="col-4 product_column">
-                <%= product_form.number_field :unit_price, class: "form-control" %>
-              </div>
-              <div class="col-4 product_column_right">
-                <%= product_form.number_field :amount, class: "form-control" %>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%= render partial: "product_fields", locals: { f: product_form } %>
       <% end %>
+      <%= link_to_add_fields '品目を追加する', form, :products %><br>
     </div>
   </div>
 
   <div class="form-group row">
-    <div class="col-6"></div>
-    <%= form.label :total_amount, class: "col-2 offset-md-6 col-form-label" %>
-    <div class="col-4">
-      <%= form.number_field :total_amount, id: :invoice_total_amount, class: "form-control" %>
+    <div class="col-2"></div>
+    <div class="col-10">
+      <div class="row">
+        <div class="col-7"></div>
+        <div class="col-5">
+          <div class="row">
+            <div class="col-4"></div>
+            <%= form.label :total_amount, class: "col-3 col-form-label" %>
+            <div class="col-3  product_column">
+              <%= form.number_field :total_amount, id: :invoice_total_amount, class: "form-control", readonly: true %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
