@@ -72,7 +72,7 @@ class InvoicesController < ApplicationController
   def invoice_params
     params.require(:invoice)
       .permit(:serial_number, :recipient, :title, :total_amount, :billing_date,
-              :sender_id, :bank_id,
+              :sender_id, :bank_id, :tax_id,
               products_attributes:
                 [:id, :name, :number, :unit, :unit_price, :amount, :_destroy])
   end

@@ -88,9 +88,9 @@
       </tr>
         <tr>
           <td class="blank"></td>
-          <td colspan="2">消費税(8%)</td>
+          <td colspan="2">消費税(<%= @invoice.tax_display %>%)</td>
         <td class="alnright">
-          <%= number_to_currency(@invoice.try(:total_amount_without_tax) * 0.08, :unit => "") %>
+          <%= number_to_currency(@invoice.try(:total_amount_without_tax) * @invoice.tax_rate, :unit => "") %>
         </td>
       </tr>
       <tr>

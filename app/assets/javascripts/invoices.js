@@ -27,6 +27,15 @@ $(document).on('turbolinks:load', function() {
     return $("#invoice_total_amount");
   };
 
+  function taxSelect() {
+    return $("select[name='invoice[tax_id]']");
+  }
+
+  function taxRate() {
+    const tax = parseFloat(taxSelect().text());
+    return ((100 + tax) / 100)
+  }
+
   function recalculateAmount(changedObject) {
     const productRow = changedObject.parents(".jsProductRow");
     const number = Number(numberInput(productRow).val());
@@ -42,7 +51,7 @@ $(document).on('turbolinks:load', function() {
       amount_sum += Number(amountInput($(this)).val());
     });
     let totalAmount = totalAmountInput();
-    totalAmount.val(Number(amount_sum * 1.08).toFixed(0));
+    totalAmount.val(Number(amount_sum * taxRate()).toFixed(0));
   };
 
   $(document).on('change', numberAndPriceInputs(), function(event){

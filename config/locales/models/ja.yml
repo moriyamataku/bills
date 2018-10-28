@@ -15,6 +15,7 @@ ja:
         sender_id: 請求者
         bank_id: 振込先銀行
         products: 品目
+        tax_id: 税率
       product:
         name: 品番・品名
         number: 数量
