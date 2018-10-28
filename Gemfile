@@ -20,6 +20,8 @@ gem 'pdfkit'
 gem 'wkhtmltopdf'
 gem 'jquery-rails'
 gem 'link_to_add_fields'
+gem 'monban'
+gem 'oath-generators'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

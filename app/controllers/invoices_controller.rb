@@ -5,7 +5,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all.order("billing_date DESC")
+    @invoices = current_user.invoices.order("billing_date DESC")
   end
 
   # GET /invoices/1
@@ -15,7 +15,8 @@ class InvoicesController < ApplicationController
 
   # GET /invoices/new
   def new
-    @invoice = Invoice.dup_last_invoice
+    @invoice = copy_invoice
+    @invoice ||= current_user.invoices.build
   end
 
   # GET /invoices/1/edit
@@ -25,7 +26,7 @@ class InvoicesController < ApplicationController
   # POST /invoices
   # POST /invoices.json
   def create
-    @invoice = Invoice.new(invoice_params)
+    @invoice = current_user.invoices.build(invoice_params)
 
     respond_to do |format|
       if @invoice.save
@@ -65,7 +66,7 @@ class InvoicesController < ApplicationController
   private
 
   def set_invoice
-    @invoice = Invoice.find(params[:id])
+    @invoice = current_user.invoices.find(params[:id])
   end
 
   def invoice_params
@@ -74,5 +75,12 @@ class InvoicesController < ApplicationController
               :sender_id, :bank_id,
               products_attributes:
                 [:id, :name, :number, :unit, :unit_price, :amount, :_destroy])
+  end
+
+  def copy_invoice
+    origin_invoice = current_user.invoices.find(params[:copy_invoice_id])
+    Invoice.dup_invoice(origin_invoice)
+  rescue => e
+    nil
   end
 end

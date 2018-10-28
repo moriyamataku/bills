@@ -1,10 +1,14 @@
-$(function () {
+$(document).on('turbolinks:load', function() { 
   function productRows() {
     return $(".jsProductRow:visible");
   };
 
-  function numberAndPriceInputs(productRow) {
-    return productRow.find("[id$=_unit_price],[id$=_number]");
+  function numberAndPriceInputs() {
+    return $(".product_row").find("[id$=_unit_price],[id$=_number]");
+  };
+
+  function deleteLinks() {
+    return $("a.product_delete");
   };
 
   function numberInput(productRow) {
@@ -18,10 +22,6 @@ $(function () {
   function amountInput(productRow) {
     return productRow.find("[id$=_amount]");
   };
-
-  // function destroyLink(productRow) {
-  //   return productRow.find("[id$=__destroy]");
-  // }
 
   function totalAmountInput() {
     return $("#invoice_total_amount");
@@ -45,17 +45,11 @@ $(function () {
     totalAmount.val(Number(amount_sum * 1.08).toFixed(0));
   };
 
-  $.each(productRows(), function() {
-    $.each(numberAndPriceInputs($(this)), function() {
-      $(this).change(function() {
-        recalculateAmount($(this));
-      });
-    });
-    // TODO : 品目を削除した時に値段を再計算
-    // $.each(destroyLink($(this)), function() {
-    //   $(this).on('click', function() {
-    //     recalculateTotalAmount($(this));
-    //   });
-    // });
+  $(document).on('change', numberAndPriceInputs(), function(event){
+    recalculateAmount($(event.target));
+  });
+
+  $(document).on('hide', deleteLinks(), function(){
+    recalculateTotalAmount();
   });
 });

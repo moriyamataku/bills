@@ -2,21 +2,21 @@ class SendersController < ApplicationController
   before_action :set_sender, only: [:show, :edit, :update, :destroy]
 
   def index
-    @senders = Sender.all
+    @senders = current_user.senders.all
   end
 
   def show
   end
 
   def new
-    @sender = Sender.new
+    @sender = current_user.senders.build
   end
 
   def edit
   end
 
   def create
-    @sender = Sender.new(sender_params)
+    @sender = current_user.senders.build(sender_params)
 
     respond_to do |format|
       if @sender.save
@@ -52,7 +52,7 @@ class SendersController < ApplicationController
   private
 
   def set_sender
-    @sender = Sender.find(params[:id])
+    @sender = current_user.senders.find(params[:id])
   end
 
   def sender_params

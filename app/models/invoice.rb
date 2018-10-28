@@ -5,14 +5,15 @@ class Invoice < ApplicationRecord
                                 reject_if: :reject_product
   belongs_to :sender
   belongs_to :bank
+  belongs_to :user
 
   def total_amount_without_tax
-    products.inject(0) { |sum, product| sum + product.amount }
+    products.inject(0) { |sum, product| sum + (product.try(:amount) || 0) }
   end
 
-  def self.dup_last_invoice
-    invoice = Invoice.last.dup
-    invoice.products << Product.last.dup
+  def self.dup_invoice(origin_invoice)
+    invoice = origin_invoice.dup
+    invoice.products << origin_invoice.products.map(&:dup)
     invoice
   end
 

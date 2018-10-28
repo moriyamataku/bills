@@ -15,7 +15,7 @@
       <th>名称</th>
       <th>合計額</th>
       <th>請求日</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -27,9 +27,10 @@
         <td><%= invoice.title %></td>
         <td><%= invoice.total_amount %></td>
         <td><%= invoice.billing_date %></td>
-        <td><%= link_to '印刷用ページ表示', invoice %></td>
-        <td><%= link_to '編集', edit_invoice_path(invoice) %></td>
-        <td><%= link_to '削除', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td align="center"><%= link_to '印刷用ページ表示', invoice %></td>
+        <td align="center"><%= link_to '編集', edit_invoice_path(invoice) %></td>
+        <td align="center"><%= link_to '削除', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td align="center"><%= link_to 'コピーして作成', new_invoice_path(copy_invoice_id: invoice) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -2,21 +2,21 @@ class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
 
   def index
-    @banks = Bank.all
+    @banks = current_user.banks.all
   end
 
   def show
   end
 
   def new
-    @bank = Bank.new
+    @bank = current_user.banks.build
   end
 
   def edit
   end
 
   def create
-    @bank = Bank.new(bank_params)
+    @bank = current_user.banks.build(bank_params)
 
     respond_to do |format|
       if @bank.save
@@ -52,7 +52,7 @@ class BanksController < ApplicationController
   private
 
   def set_bank
-    @bank = Bank.find(params[:id])
+    @bank = current_user.banks.find(params[:id])
   end
 
   def bank_params
