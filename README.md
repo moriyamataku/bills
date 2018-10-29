@@ -1,24 +1,29 @@
 # README
+https://simple-bills.herokuapp.com/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# bills
+請求書の作成及びPDFプレビュー
 
-Things you may want to cover:
+# Dependency
+- Ruby (2.4.0)
+- Rails (5.1.6)
+- jQuery (1.12.4)
 
-* Ruby version
+# Setup
+```bash
+bundle exec rake db:migrate
+bundle exec rake db:seed
+```
 
-* System dependencies
+# Usage
+`Sing up` して請求書情報を登録。
 
-* Configuration
+# Licence
+This software is released under the MIT License, see LICENSE.
 
-* Database creation
+# Authors
+moriyamataku2@gmail.com
 
-* Database initialization
+# References
+https://www.misoca.jp/index.html
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
