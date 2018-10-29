@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :invoices
-  has_many :banks
-  has_many :senders
+  has_many :invoices, dependent: :destroy
+  has_many :banks,    dependent: :destroy
+  has_many :senders,  dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true

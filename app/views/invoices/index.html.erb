@@ -29,7 +29,7 @@
         <td><%= invoice.title %></td>
         <td><%= invoice.total_amount %></td>
         <td><%= invoice.billing_date %></td>
-        <td align="center"><%= link_to '印刷用ページ表示', invoice %></td>
+        <td align="center"><%= link_to '印刷用ページ表示', invoice, target: "_blank" %></td>
         <td align="center"><%= link_to '編集', edit_invoice_path(invoice) %></td>
         <td align="center"><%= link_to '削除', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td align="center"><%= link_to 'コピーして作成', new_invoice_path(copy_invoice_id: invoice) %></td>
