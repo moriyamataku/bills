@@ -1,7 +1,5 @@
-# README
-https://simple-bills.herokuapp.com/
-
 # bills
+https://simple-bills.herokuapp.com/
 請求書の作成及びPDFプレビュー
 
 # Dependency
