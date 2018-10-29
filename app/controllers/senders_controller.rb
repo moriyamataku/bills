@@ -20,7 +20,7 @@ class SendersController < ApplicationController
 
     respond_to do |format|
       if @sender.save
-        format.html { redirect_to senders_url, notice: 'Sender was successfully created.' }
+        format.html { redirect_to senders_url, notice: '請求者を登録しました。' }
         format.json { render :show, status: :created, location: @sender }
       else
         format.html { render :new }
@@ -32,7 +32,7 @@ class SendersController < ApplicationController
   def update
     respond_to do |format|
       if @sender.update(sender_params)
-        format.html { redirect_to senders_url, notice: 'Sender was successfully updated.' }
+        format.html { redirect_to senders_url, notice: '請求者を更新しました。' }
         format.json { render :show, status: :ok, location: @sender }
       else
         format.html { render :edit }

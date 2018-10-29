@@ -6,7 +6,9 @@
     <%= link_to '新しい振込先銀行を作成する', new_bank_path, class: "title_button"%>
   </div>
 </div>
-
+<% if flash[:notice] %>
+  <p class="flash flash_notice"><%= flash[:notice] %></p>
+<% end %>
 <table class="table table-bordered table-striped">
   <thead class="thead-inverse">
     <tr>

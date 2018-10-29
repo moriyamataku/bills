@@ -36,7 +36,6 @@
   height: 40px;
   width: 100%;
   position: relative;
-  margin: 0 0 20px 0;
   padding: 10px 30px;
   z-index: 800;
   h2 {
@@ -83,6 +82,7 @@
 
 table {
   font-size: 0.85em;
+  margin: 20px 0 0 0;
 }
 
 
@@ -119,4 +119,19 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.flash.flash_notice {
+  background-color: #dce9dd;
+  background-image: linear-gradient(180deg, #dce9dd, #ccdfcd);
+  border-bottom: 1px solid #adcbaf;
+  color: #416347;
+}
+
+.flash {
+  font-weight: bold;
+  font-size: 1.1em;
+  line-height: 1.0em;
+  padding: 13px 30px 11px;
+  position: relative;
 }

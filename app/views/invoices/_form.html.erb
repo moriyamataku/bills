@@ -8,7 +8,6 @@
       <%= link_to '一覧へ戻る', invoices_path, class: "title_button" %>
     </div>
   </div>
-
   <% if invoice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
@@ -20,7 +19,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="form-group row">
     <div class="col-6"></div>
     <%= form.label :tax_id, class: "col-2 col-form-label" %>

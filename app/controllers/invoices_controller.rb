@@ -2,24 +2,18 @@ class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
   layout "paper_a4", only: [:show]
 
-  # GET /invoices
-  # GET /invoices.json
   def index
     @invoices = current_user.invoices.order("billing_date DESC")
   end
 
-  # GET /invoices/1
-  # GET /invoices/1.json
   def show
   end
 
-  # GET /invoices/new
   def new
     @invoice = copy_invoice
     @invoice ||= current_user.invoices.build
   end
 
-  # GET /invoices/1/edit
   def edit
   end
 
@@ -30,7 +24,7 @@ class InvoicesController < ApplicationController
 
     respond_to do |format|
       if @invoice.save
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
+        format.html { redirect_to invoices_path, notice: 'Invoice was successfully created.' }
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new }
@@ -44,7 +38,7 @@ class InvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @invoice.update(invoice_params)
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
+        format.html { redirect_to invoices_path, notice: 'Invoice was successfully updated.' }
         format.json { render :show, status: :ok, location: @invoice }
       else
         format.html { render :edit }
