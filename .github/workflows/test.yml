@@ -33,7 +33,9 @@ jobs:
     timeout-minutes: 30
     needs: first
     permissions:
+      pull-requests: write
       issues: write
+      id-token: write
     steps:
       - name: Comment
         env:
